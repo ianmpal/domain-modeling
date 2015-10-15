@@ -141,11 +141,11 @@ struct Money {
     
 
 
-var money1 = Money(amount: 4, currency: "USD")
+//var money1 = Money(amount: 4, currency: "USD")
 
 //print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
 
-print(money1.sub(1.25, curr: "CAN"))
+//print(money1.sub(1.25, curr: "CAN"))
 
 
 
@@ -173,18 +173,17 @@ Methods:
 
 struct Job {
     var title: String
-    var salaryHourly: Int
-    var salaryYearly: Int
+    var salary: Double
     
-    func calculateIncome(hoursWorked: Int) -> String {
-        
-        return "$\(hoursWorked * salaryHourly)"
-        
-    }
-    
-    mutating func raise(percentRaise: Int) {
-        salaryHourly = salaryHourly * percentRaise
-    }
+//    func calculateIncome(hoursWorked: Int) -> String {
+//        
+//        return "$\(hoursWorked * salaryHourly)"
+//        
+//    }
+//    
+//    mutating func raise(percentRaise: Int) {
+//        salaryHourly = salaryHourly * percentRaise
+//    }
     
 }
 
@@ -194,13 +193,41 @@ struct Spouse {
 }
 
 
+/*
+Create a class: Person
+
+–  It have the following properties:
+
+•firstName •lastName
+•age
+•job (Job) •spouse (Person)
+
+–  Methods:
+
+•display a string representation of Person (toString())
+
+–  Note that if the Person is under age 16, they cannot have a job
+
+–  Note that if the Person is under age 18, they cannot have a spouse
+
+
+
+
+
+*/
+
 struct Person {
-    let firstName : String
-    let lastName : String
+    var firstName : String? // Has to be optional for haveChild method
+    var lastName : String?  // Has to be optional for haveChild method
     var age : Int
     var job : Job?
     var spouse: Spouse?
-  
+    
+    
+    init (age: Int) {
+        
+        self.age = age
+    }
     
     init (firstName: String, lastName: String, age: Int) {
         self.firstName = firstName
@@ -217,6 +244,8 @@ struct Person {
     }
     
     
+    
+    
     func toString() -> String {
         if age < 16 {
             return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: US Citizens under 16 are not allowed to work \nSpouse: US Citizens under 18 are not allowed to get married)"
@@ -231,12 +260,88 @@ struct Person {
 }
 
 //var job1 = Job(title: "contractor")
-var sp1 = Spouse(name: "margaret")
+//var sp1 = Spouse(name: "margaret")
 //var p1 = Person (firstName: "Ian", lastName: "Palmgren", age: 19, job: job1, spouse: sp1)
 //var p2 = Person (firstName: "Ian", lastName: "Palmgren", age: 24, job: Job, spouse: Spouse)
 
 
 //print(p1.toString())
+
+
+
+
+
+/*
+
+Create a class: Family
+
+– Properties:
+
+•members (a collection of Persons)
+
+– Methods:
+
+•householdIncome: return the combined income of the entire family
+
+•haveChild: add a new Person to the collection of age 0
+
+there must be one Person in the family who is over age 21 to be legal
+
+*/
+
+struct Family {
+    var members = [Person]()
+    
+    init (membersInit: [Person]) {
+        var legalFamily = false
+        for member in membersInit {
+            if member.age > 21 {
+                legalFamily = true
+            }
+        }
+        if legalFamily {
+            self.members = membersInit
+        } else {
+            print("At least one person in the family must be 21 years or older")
+        }
+    }
+    
+    
+    func householdIncome() -> Double {
+        var total: Double = 0
+        
+        for person in members {
+            if person.job?.salary != nil {
+                total += (person.job?.salary)!
+            }
+        }
+        return total
+        
+    }
+    
+    mutating func haveChild() {
+        let newChild = Person(age: 0)
+        self.members.append(newChild)
+    }
+}
+
+
+var p1 = Person(firstName: "Ian", lastName: "Palmgren", age: 22)
+var p2 = Person(firstName: "Steph", lastName: "Morris", age: 16)
+
+var family: [Person] = [p1, p2]
+var fam = Family(membersInit: family)
+
+
+for person in fam.members {
+    print(person.firstName!)
+}
+
+fam.haveChild()
+
+for person in fam.members {
+    print(person)
+}
 
 
 
