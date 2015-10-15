@@ -177,9 +177,11 @@ Create a class: Person
 
 –  It have the following properties:
 
-•firstName •lastName
+•firstName 
+•lastName
 •age
-•job (Job) •spouse (Person)
+•job (Job) 
+•spouse (Person)
 
 –  Methods:
 
@@ -207,14 +209,14 @@ class Person {
             self.job = job
         } else {
             self.job = nil
-            print("Persons under age 16 are not allowed to work")
+            print("Persons under age 16 are not allowed to work.")
         }
         
         if age >= 18 {
             self.spouse = spouse
         } else {
             self.spouse = nil
-            print("Persons under age 18 are not allowed to get married")
+            print("Persons under age 18 are not allowed to get married.")
         }
     }
     
@@ -222,9 +224,9 @@ class Person {
         if age < 16 {
             return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: US Citizens under 16 are not allowed to work \nSpouse: US Citizens under 18 are not allowed to get married)"
         } else if age > 16 && age < 18 {
-            return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \(job!) \nSpouse: Not over 18"
+            return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \(job?.title) \nSpouse: Not over 18"
         } else {
-            return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \(job!) \nSpouse: \(spouse!)"
+            return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \(job?.title) \nSpouse: \(spouse?.firstName)"
         }
     }
     
@@ -254,16 +256,15 @@ there must be one Person in the family who is over age 21 to be legal
 class Family {
     var members = [Person]()
     
-    init (membersArray: [Person]) {
-        self.members = membersArray
+    init (members: [Person]) {
+        self.members = members
     }
     
     func householdIncome() -> String {
         var totalIncome: Double = 0.0
         
         for person in members {
-            print(person.job?.salary)
-            if person.job?.salary != nil {
+            if person.job != nil {
                 totalIncome += person.job!.salary
             }
         }
@@ -287,17 +288,22 @@ class Family {
 }
 
 
-var job1 = Job(title: "Electrician", salary: 6000.0)
+var job1 = Job(title: "Electrician", salary: 12000.0)
 var job2 = Job(title: "Designer", salary: 6000.0)
 
 
 var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+//var p3 = Person(firstName: "", lastName: "", age: 0, job: nil, spouse: nil)
 
+//print("\n")
+//print("\(p1.toString()) \n")
+//print("\(p2.toString()) \n")
+//print("\(p3.toString()) \n")
 
 
 var family: [Person] = [p1, p2]
-var fam = Family(membersArray: family)
+var fam = Family(members: family)
 
 print("There are \(fam.members.count) members in the family")
 fam.haveChild()
