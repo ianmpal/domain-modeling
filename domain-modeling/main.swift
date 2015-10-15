@@ -84,91 +84,17 @@ struct Money {
         }
     }
     
-//    func add(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
-//        if curr1 == curr2 {
-//            return value1 + value2
-//        }
-//        else {
-//            return value1 + self.convert(value2, curr1: curr2, curr2: curr1)
-//            
-//        }
-//    }
-//    
-//    func sub(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
-//        if curr1 == curr2 {
-//            return value1 - value2
-//        }
-//        else {
-//            return value1 - self.convert(value2, curr1: curr2, curr2: curr1)
-//            
-//        }
-//    }
-    
    
 }
     
 
 
-//var money1 = Money(amount: 4, currency: "USD")
+var money1 = Money(amount: 4, currency: "USD")
 
-//print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
+print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
 
-//print(money1.sub(1.25, curr: "CAN"))
+print(money1.sub(1.25, curr: "CAN"))
 
-
-
-/*
-Create a class: Job
-
-– Properties:
-
-    •title 
-    •salary
-
-– Salaries can be either per-hour or per-year – 
-
-Methods:
-
-    •calculateIncome, which should accept a number of hours worked this year
-
-    if this is a per-year salary, then ignore the hours
-
-    •raise, which will bump up the salary by the passed percentage
-
-*/
-
-
-
-class Job {
-    var title: String
-    var salary: Double
-    
-    init (title: String, salary: Double) {
-        self.title = title
-        self.salary = salary
-    }
-    
-    enum SalaryType {
-        case PerHour(Double)
-        case PerYear(Double)
-    }
-    
-//    func calculateIncome(hoursWorked: Int) -> String {
-//        
-//        switch SalaryType.self {
-//        case .PerHour(salary):
-//            print("hello")
-//        case .PerYear(salary):
-//            print("hello2")
-//        }
-//        
-//    }
-    
-    func raise(percentRaise: Double) {
-        salary += (salary * percentRaise)
-    }
-    
-}
 
 
 
@@ -233,6 +159,73 @@ class Person {
    
 }
 
+/*
+Create a class: Job
+
+– Properties:
+
+•title
+•salary
+
+– Salaries can be either per-hour or per-year –
+
+Methods:
+
+•calculateIncome, which should accept a number of hours worked this year
+
+if this is a per-year salary, then ignore the hours
+
+•raise, which will bump up the salary by the passed percentage
+
+*/
+
+
+//class Job {
+//    var title: String
+//    var salary: Double
+//}
+
+
+
+class Job {
+    var title: String
+    var salary: Salary
+    
+    enum Salary {
+        case PerHour(Double)
+        case PerYear(Double)
+    }
+    
+    init (title: String, salary: Salary) {
+        self.title = title
+        self.salary = salary
+    }
+    
+    
+    func calculateIncome(hoursWorked: Double) -> Double {
+        
+        switch salary {
+        case .PerHour(let amount):
+            return amount * hoursWorked
+        case .PerYear(let amount):
+            return amount
+        }
+        
+    }
+    
+    func raise(percentRaise: Double) -> Double {
+        
+        switch salary {
+        case .PerYear(let amount):
+            return (amount + ((percentRaise/100)+1))
+            
+        case .PerHour(let amount):
+            return (amount + ((percentRaise/100)+1))
+        }
+        
+    }
+}
+
 
 
 /*
@@ -265,9 +258,10 @@ class Family {
         
         for person in members {
             if person.job != nil {
-                totalIncome += person.job!.salary
+                totalIncome += (person.job?.calculateIncome(2000.0))!
             }
         }
+        
         return "Total Household Income = $\(totalIncome)"
     }
     
@@ -288,12 +282,21 @@ class Family {
 }
 
 
-var job1 = Job(title: "Electrician", salary: 12000.0)
-var job2 = Job(title: "Designer", salary: 6000.0)
+var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
+var job2 = Job(title: "Electrician", salary: Job.Salary.PerYear(30000.0))
 
 
 var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+
+
+print("Income is \(p2.job?.calculateIncome(40.0))")
+
+print(p2.job?.raise(10.0))
+
+print("Income now is \(p2.job?.calculateIncome(40.0))")
+
+
 //var p3 = Person(firstName: "", lastName: "", age: 0, job: nil, spouse: nil)
 
 //print("\n")
@@ -305,15 +308,14 @@ var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, sp
 var family: [Person] = [p1, p2]
 var fam = Family(members: family)
 
-print("There are \(fam.members.count) members in the family")
-fam.haveChild()
-print("Now there are \(fam.members.count) members in the family")
+//print(fam.householdIncome())
 
-print("\n")
+//print("There are \(fam.members.count) members in the family")
+//fam.haveChild()
+//print("Now there are \(fam.members.count) members in the family")
+//
+//print("\n")
 
-
-
-print(fam.householdIncome())
 
 
 
