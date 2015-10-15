@@ -92,42 +92,60 @@ struct Money {
                 return amount
             }
         default:
-            return 0.0
+            return 0.0 // User input error, defaults to 0.0
         }
     }
     
-    
-    
-    func add(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
-        if curr1 == curr2 {
-            return value1 + value2
+    func add(value: Double, curr: String) -> Double {
+        if self.currency == curr {
+            return self.amount + value
         }
         else {
-            return value1 + self.convert(value2, curr1: curr2, curr2: curr1)
+            return self.amount + self.convert(value, curr1: curr, curr2: self.currency)
             
         }
     }
     
-    func sub(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
-        if curr1 == curr2 {
-            return value1 - value2
+    func sub(value: Double, curr: String) -> Double {
+        if self.currency == curr {
+            return self.amount - value
         }
         else {
-            return value1 - self.convert(value2, curr1: curr2, curr2: curr1)
+            return self.amount - self.convert(value, curr1: curr, curr2: self.currency)
             
         }
     }
+    
+//    func add(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
+//        if curr1 == curr2 {
+//            return value1 + value2
+//        }
+//        else {
+//            return value1 + self.convert(value2, curr1: curr2, curr2: curr1)
+//            
+//        }
+//    }
+//    
+//    func sub(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
+//        if curr1 == curr2 {
+//            return value1 - value2
+//        }
+//        else {
+//            return value1 - self.convert(value2, curr1: curr2, curr2: curr1)
+//            
+//        }
+//    }
     
    
 }
     
 
 
-var money1 = Money(amount: 1, currency: "USD")
+var money1 = Money(amount: 4, currency: "USD")
 
 //print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
 
-print(money1.sub(3.0, curr1: "GBP", value2: 1, curr2: "EUR"))
+print(money1.sub(1.25, curr: "CAN"))
 
 
 
