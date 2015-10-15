@@ -8,9 +8,16 @@
 
 import Foundation
 
+
+// Struct Money
+
 struct Money {
     var amount: Double
     var currency: String
+    
+    
+    // Convert is generalized so that you can input any value in any currency, and it will return the appropriate
+    // value based on the secondary currency you want it converted into
     
     func convert(amount: Double, curr1: String, curr2: String) -> Double {
 
@@ -92,32 +99,11 @@ struct Money {
 var money1 = Money(amount: 4, currency: "USD")
 
 print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
-
 print(money1.sub(1.25, curr: "CAN"))
+print(money1.add(1.25, curr: "EUR"))
 
 
-
-
-/*
-Create a class: Person
-
-–  It have the following properties:
-
-•firstName 
-•lastName
-•age
-•job (Job) 
-•spouse (Person)
-
-–  Methods:
-
-•display a string representation of Person (toString())
-
-–  Note that if the Person is under age 16, they cannot have a job
-
-–  Note that if the Person is under age 18, they cannot have a spouse
-
-*/
+// Class Person
 
 class Person {
     var firstName: String
@@ -159,33 +145,8 @@ class Person {
    
 }
 
-/*
-Create a class: Job
 
-– Properties:
-
-•title
-•salary
-
-– Salaries can be either per-hour or per-year –
-
-Methods:
-
-•calculateIncome, which should accept a number of hours worked this year
-
-if this is a per-year salary, then ignore the hours
-
-•raise, which will bump up the salary by the passed percentage
-
-*/
-
-
-//class Job {
-//    var title: String
-//    var salary: Double
-//}
-
-
+// Class Job
 
 class Job {
     var title: String
@@ -213,6 +174,9 @@ class Job {
         
     }
     
+    
+    // Calculation is [salary * (1 + (% raise / 100))]
+    
     func raise(percentRaise: Double) -> Double {
         
         switch salary {
@@ -220,31 +184,14 @@ class Job {
             return (amount + ((percentRaise/100)+1))
             
         case .PerHour(let amount):
-            return (amount + ((percentRaise/100)+1))
+            return (calculateIncome(2000.0) + ((percentRaise/100)+1))
         }
         
     }
 }
 
 
-
-/*
-
-Create a class: Family
-
-– Properties:
-
-•members (a collection of Persons)
-
-– Methods:
-
-•householdIncome: return the combined income of the entire family
-
-•haveChild: add a new Person to the collection of age 0
-
-there must be one Person in the family who is over age 21 to be legal
-
-*/
+// Class Family
 
 class Family {
     var members = [Person]()
@@ -261,7 +208,6 @@ class Family {
                 totalIncome += (person.job?.calculateIncome(2000.0))!
             }
         }
-        
         return "Total Household Income = $\(totalIncome)"
     }
     
@@ -290,11 +236,11 @@ var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse:
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
 
 
-print("Income is \(p2.job?.calculateIncome(40.0))")
-
-print(p2.job?.raise(10.0))
-
-print("Income now is \(p2.job?.calculateIncome(40.0))")
+//print("Income is \(p2.job?.calculateIncome(40.0))")
+//
+//print(p2.job?.raise(10.0))
+//
+//print("Income now is \(p2.job?.calculateIncome(40.0))")
 
 
 //var p3 = Person(firstName: "", lastName: "", age: 0, job: nil, spouse: nil)
