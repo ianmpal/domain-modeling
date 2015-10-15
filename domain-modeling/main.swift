@@ -40,79 +40,94 @@ meaning, you'll need to convert when adding/subtracting
 */
 
 struct Money {
-    var amount: Int
+    var amount: Double
     var currency: String
     
     func convert(amount: Double, curr1: String, curr2: String) -> Double {
         
-       
+
         switch curr1 {
-            case "USD":
-                switch curr2 {
-                    case "GBP":
-                        return amount * 0.5
-                    case "EUR":
-                        return amount * 1.5
-                    case "CAN":
-                        return amount * 1.25
-                    default:
-                        return amount
-                }
+        case "USD":
+            switch curr2 {
             case "GBP":
-                switch curr2 {
-                    case "USD":
-                        return amount * 2.0
-                    case "EUR":
-                        return amount * 3.0
-                    case "CAN":
-                        return amount * 2.5
-                    default:
-                        return amount
-                }
+                return amount * 0.5
             case "EUR":
-                switch curr2 {
-                    case "GBP":
-                        return amount * (1/3)
-                    case "USD":
-                        return amount * (2/3)
-                    case "CAN":
-                        return amount * (5/6)
-                    default:
-                        return amount
-                }
+                return amount * 1.5
             case "CAN":
-                switch curr2 {
-                    case "GBP":
-                        return amount * 2/5
-                    case "EUR":
-                        return amount * 1.2
-                    case "USD":
-                        return amount * 4/5
-                    default:
-                        return amount
-                }
+                return amount * 1.25
             default:
-                return 2.0
-        
+                return amount
+            }
+        case "GBP":
+            switch curr2 {
+            case "USD":
+                return amount * 2.0
+            case "EUR":
+                return amount * 3.0
+            case "CAN":
+                return amount * 2.5
+            default:
+                return amount
+            }
+        case "EUR":
+            switch curr2 {
+            case "GBP":
+                return amount * (1/3)
+            case "USD":
+                return amount * (2/3)
+            case "CAN":
+                return amount * (5/6)
+            default:
+                return amount
+            }
+        case "CAN":
+            switch curr2 {
+            case "GBP":
+                return amount * (2/5)
+            case "EUR":
+                return amount * 1.2
+            case "USD":
+                return amount * (4/5)
+            default:
+                return amount
+            }
+        default:
+            return 0.0
         }
     }
     
     
     
-    func add(value1: Int, value2: Int) -> Int {
-        return value1 - value2
+    func add(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
+        if curr1 == curr2 {
+            return value1 + value2
+        }
+        else {
+            return value1 + self.convert(value2, curr1: curr2, curr2: curr1)
+            
+        }
     }
     
-    func sub(value1: Int, value2: Int) -> Int {
-        return value1 - value2
+    func sub(value1: Double, curr1: String, value2: Double, curr2: String) -> Double {
+        if curr1 == curr2 {
+            return value1 - value2
+        }
+        else {
+            return value1 - self.convert(value2, curr1: curr2, curr2: curr1)
+            
+        }
     }
+    
+   
 }
     
 
 
 var money1 = Money(amount: 1, currency: "USD")
 
-print(money1.convert(3.0, curr1: "EUR", curr2: "USD"))
+//print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
+
+print(money1.sub(3.0, curr1: "GBP", value2: 1, curr2: "EUR"))
 
 
 
@@ -205,5 +220,58 @@ var sp1 = Spouse(name: "margaret")
 
 //print(p1.toString())
 
+
+
+
+
+//        switch curr1 {
+//            case "USD":
+//                switch curr2 {
+//                    case "GBP":
+//                        return "£\(String(amount * 0.5))"
+//                    case "EUR":
+//                        return "€\(String(amount * 1.5))"
+//                    case "CAN":
+//                        return "$\(String(amount * 1.25))"
+//                    default:
+//                        return "$\(String(amount))"
+//                }
+//            case "GBP":
+//                switch curr2 {
+//                    case "USD":
+//                        return "$\(String(amount * 2.0))"
+//                    case "EUR":
+//                        return "€\(String(amount * 3.0))"
+//                    case "CAN":
+//                        return "$\(String(amount * 2.5))"
+//                    default:
+//                        return "£\(String(amount))"
+//                }
+//            case "EUR":
+//                switch curr2 {
+//                    case "GBP":
+//                        return "£\(String(amount * (1/3)))"
+//                    case "USD":
+//                        return "$\(String(amount * (2/3)))"
+//                    case "CAN":
+//                        return "$\(String(amount * (5/6)))"
+//                    default:
+//                        return "€\(String(amount))"
+//                }
+//            case "CAN":
+//                switch curr2 {
+//                    case "GBP":
+//                        return "£\(String(amount * (2/5)))"
+//                    case "EUR":
+//                        return "€\(String(amount * 1.2))"
+//                    case "USD":
+//                        return "$\(String(amount * (4/5)))"
+//                    default:
+//                        return "$\(String(amount))"
+//                }
+//            default:
+//                return "Please enter values in USD, GBP, EUR, or CAN."
+//
+//        }
 
 
