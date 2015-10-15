@@ -225,7 +225,6 @@ struct Person {
     
     
     init (age: Int) {
-        
         self.age = age
     }
     
@@ -242,9 +241,6 @@ struct Person {
         self.job = job
         self.spouse = spouse
     }
-    
-    
-    
     
     func toString() -> String {
         if age < 16 {
@@ -292,15 +288,15 @@ there must be one Person in the family who is over age 21 to be legal
 struct Family {
     var members = [Person]()
     
-    init (membersInit: [Person]) {
+    init (membersArray: [Person]) {
         var legalFamily = false
-        for member in membersInit {
+        for member in membersArray {
             if member.age > 21 {
                 legalFamily = true
             }
         }
         if legalFamily {
-            self.members = membersInit
+            self.members = membersArray
         } else {
             print("At least one person in the family must be 21 years or older")
         }
@@ -316,7 +312,6 @@ struct Family {
             }
         }
         return total
-        
     }
     
     mutating func haveChild() {
@@ -330,12 +325,9 @@ var p1 = Person(firstName: "Ian", lastName: "Palmgren", age: 22)
 var p2 = Person(firstName: "Steph", lastName: "Morris", age: 16)
 
 var family: [Person] = [p1, p2]
-var fam = Family(membersInit: family)
+var fam = Family(membersArray: family)
 
 
-for person in fam.members {
-    print(person.firstName!)
-}
 
 fam.haveChild()
 
