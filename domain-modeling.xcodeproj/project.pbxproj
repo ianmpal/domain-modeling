@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C27DF9C1BD08CCC00752EF8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C27DF9B1BD08CCC00752EF8 /* Person.swift */; settings = {ASSET_TAGS = (); }; };
+		3C27DF9E1BD08CE700752EF8 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C27DF9D1BD08CE700752EF8 /* Money.swift */; settings = {ASSET_TAGS = (); }; };
+		3C27DFA01BD08D0A00752EF8 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C27DF9F1BD08D0A00752EF8 /* Job.swift */; settings = {ASSET_TAGS = (); }; };
+		3C27DFA21BD08D2500752EF8 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C27DFA11BD08D2500752EF8 /* Family.swift */; settings = {ASSET_TAGS = (); }; };
 		3C61DA1E1BCF0E2000860C86 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61DA1D1BCF0E2000860C86 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C27DF9B1BD08CCC00752EF8 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		3C27DF9D1BD08CE700752EF8 /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		3C27DF9F1BD08D0A00752EF8 /* Job.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		3C27DFA11BD08D2500752EF8 /* Family.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		3C61DA1A1BCF0E2000860C86 /* domain-modeling */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "domain-modeling"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C61DA1D1BCF0E2000860C86 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +49,10 @@
 		3C61DA111BCF0E2000860C86 = {
 			isa = PBXGroup;
 			children = (
+				3C27DF9B1BD08CCC00752EF8 /* Person.swift */,
+				3C27DF9D1BD08CE700752EF8 /* Money.swift */,
+				3C27DF9F1BD08D0A00752EF8 /* Job.swift */,
+				3C27DFA11BD08D2500752EF8 /* Family.swift */,
 				3C61DA1C1BCF0E2000860C86 /* domain-modeling */,
 				3C61DA1B1BCF0E2000860C86 /* Products */,
 			);
@@ -118,7 +130,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C27DFA21BD08D2500752EF8 /* Family.swift in Sources */,
+				3C27DF9E1BD08CE700752EF8 /* Money.swift in Sources */,
+				3C27DF9C1BD08CCC00752EF8 /* Person.swift in Sources */,
 				3C61DA1E1BCF0E2000860C86 /* main.swift in Sources */,
+				3C27DFA01BD08D0A00752EF8 /* Job.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +252,7 @@
 				3C61DA231BCF0E2000860C86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
