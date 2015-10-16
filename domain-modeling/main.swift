@@ -230,7 +230,7 @@ class Family {
 
 var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
 var job2 = Job(title: "Electrician", salary: Job.Salary.PerYear(30000.0))
-var job2 = Job(title: "Electrician", salary: Job.Salary.PerHour(10.0))
+//var job2 = Job(title: "Electrician", salary: Job.Salary.PerHour(10.0))
 
 
 
