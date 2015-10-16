@@ -15,12 +15,19 @@ import Foundation
 var money1 = Money(amount: 4, currency: "USD")
 var money2 = Money(amount: 8, currency: "GBP")
 
-print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
-print(money1.sub(1.25, curr: "CAN"))
-print(money1.add(1.25, curr: "EUR"))
-print(money2.convert(6.8, curr1: "EUR", curr2: "CAN"))
-print(money2.sub(14.2, curr: "GBP"))
+var convert1 = money1.convert(2.5, curr1: "CAN", curr2: "GBP")
+var sub1 = money1.sub(1.25, curr: "CAN")
+var add1 = money1.add(2.3, curr: "EUR")
+var convert2 = money2.convert(6.8, curr1: "EUR", curr2: "CAN")
+var sub2 = money2.sub(14.2, curr: "GBP")
 
+
+
+print("After conversion, $2.5 CAN is equal to \(convert1) GBP")
+print("After subtracting $1.25 CAN from $\(money1.amount) USD we have $\(sub1) USD left.")
+print("After adding $2.3 EUR, we have $\(add1) USD left.")
+print("After conversion, 6.8 EUR is equal to \(convert2) CAN")
+print("After subtracting 14.2 GBP, our balance is \(sub2) GBP.")
 
 print("\n")
 
@@ -29,10 +36,12 @@ var job2 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
 
 var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+var p3 = Person(firstName: "Baby", lastName: "Smith", age: 0, job: nil, spouse: nil)
 
 print("\n")
 print("\(p1.toString()) \n")
 print("\(p2.toString()) \n")
+print("\(p3.toString()) \n")
 
 var raise = 10.0
 var beforeRaise = p2.job?.calculateIncome(1.0)
