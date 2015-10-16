@@ -95,12 +95,15 @@ struct Money {
 }
     
 
-//
-//var money1 = Money(amount: 4, currency: "USD")
-//
-//print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
-//print(money1.sub(1.25, curr: "CAN"))
-//print(money1.add(1.25, curr: "EUR"))
+
+var money1 = Money(amount: 4, currency: "USD")
+var money2 = Money(amount: 8, currency: "GBP")
+
+print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
+print(money1.sub(1.25, curr: "CAN"))
+print(money1.add(1.25, curr: "EUR"))
+print(money2.convert(6.8, curr1: "EUR", curr2: "CAN"))
+print(money2.sub(14.2, curr: "GBP"))
 
 
 // Class Person
@@ -134,7 +137,7 @@ class Person {
     
     func toString() -> String {
         if age < 16 {
-            return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: US Citizens under 16 are not allowed to work \nSpouse: US Citizens under 18 are not allowed to get married)"
+            return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: US Citizens under 16 are not allowed to work \nSpouse: US Citizens under 18 are not allowed to get married"
         } else if age > 16 && age < 18 {
             return "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \(job?.title) \nSpouse: Not over 18"
         } else {
@@ -181,8 +184,6 @@ class Job {
         switch salary {
         case .PerYear(let amount):
             self.salary = Salary.PerYear(amount * ((percentRaise/100)+1))
-            //return (amount * ((percentRaise/100)+1))
-            
         case .PerHour(let amount):
             self.salary = Salary.PerHour(amount * ((percentRaise/100)+1))
         }
@@ -227,96 +228,51 @@ class Family {
     }
 }
 
+print("\n")
+
 
 var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
-var job2 = Job(title: "Electrician", salary: Job.Salary.PerYear(30000.0))
-//var job2 = Job(title: "Electrician", salary: Job.Salary.PerHour(10.0))
+//var job2 = Job(title: "Electrician", salary: Job.Salary.PerYear(30000.0))
+var job2 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
+
 
 
 
 var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+var p3 = Person(firstName: "Baby", lastName: "Smith", age: 0, job: nil, spouse: nil)
 
+print("\n")
+print("\(p1.toString()) \n")
+print("\(p2.toString()) \n")
+print("\(p3.toString()) \n")
 
-print("Income is \(p2.job?.calculateIncome(40.0))")
-p2.job?.raise(20)
-print("Income now is \(p2.job?.calculateIncome(40.0))")
+var raise = 10.0
+var beforeRaise = p2.job?.calculateIncome(1.0)
+print("Income is \(beforeRaise!)")
+print("Raising income by \(raise)%")
 
+p2.job?.raise(raise)
+var afterRaise = p2.job?.calculateIncome(1.0)
 
-//var p3 = Person(firstName: "", lastName: "", age: 0, job: nil, spouse: nil)
-
-//print("\n")
-//print("\(p1.toString()) \n")
-//print("\(p2.toString()) \n")
-//print("\(p3.toString()) \n")
+print("Income after 10% raise is \(afterRaise!)")
 
 
 var family: [Person] = [p1, p2]
 var fam = Family(members: family)
 
-//print(fam.householdIncome())
+print("\n")
 
-//print("There are \(fam.members.count) members in the family")
-//fam.haveChild()
-//print("Now there are \(fam.members.count) members in the family")
-//
-//print("\n")
+print(fam.householdIncome())
 
+print("There are \(fam.members.count) members in the family")
+print("The family is having a child\n")
+fam.haveChild()
+print("\n")
+print("Now there are \(fam.members.count) members in the family")
 
-
-
-
-
+print("\n")
 
 
-//        switch curr1 {
-//            case "USD":
-//                switch curr2 {
-//                    case "GBP":
-//                        return "£\(String(amount * 0.5))"
-//                    case "EUR":
-//                        return "€\(String(amount * 1.5))"
-//                    case "CAN":
-//                        return "$\(String(amount * 1.25))"
-//                    default:
-//                        return "$\(String(amount))"
-//                }
-//            case "GBP":
-//                switch curr2 {
-//                    case "USD":
-//                        return "$\(String(amount * 2.0))"
-//                    case "EUR":
-//                        return "€\(String(amount * 3.0))"
-//                    case "CAN":
-//                        return "$\(String(amount * 2.5))"
-//                    default:
-//                        return "£\(String(amount))"
-//                }
-//            case "EUR":
-//                switch curr2 {
-//                    case "GBP":
-//                        return "£\(String(amount * (1/3)))"
-//                    case "USD":
-//                        return "$\(String(amount * (2/3)))"
-//                    case "CAN":
-//                        return "$\(String(amount * (5/6)))"
-//                    default:
-//                        return "€\(String(amount))"
-//                }
-//            case "CAN":
-//                switch curr2 {
-//                    case "GBP":
-//                        return "£\(String(amount * (2/5)))"
-//                    case "EUR":
-//                        return "€\(String(amount * 1.2))"
-//                    case "USD":
-//                        return "$\(String(amount * (4/5)))"
-//                    default:
-//                        return "$\(String(amount))"
-//                }
-//            default:
-//                return "Please enter values in USD, GBP, EUR, or CAN."
-//
-//        }
 
 
