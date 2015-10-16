@@ -95,12 +95,12 @@ struct Money {
 }
     
 
-
-var money1 = Money(amount: 4, currency: "USD")
-
-print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
-print(money1.sub(1.25, curr: "CAN"))
-print(money1.add(1.25, curr: "EUR"))
+//
+//var money1 = Money(amount: 4, currency: "USD")
+//
+//print(money1.convert(2.5, curr1: "CAN", curr2: "GBP"))
+//print(money1.sub(1.25, curr: "CAN"))
+//print(money1.add(1.25, curr: "EUR"))
 
 
 // Class Person
@@ -177,14 +177,14 @@ class Job {
     
     // Calculation is [salary * (1 + (% raise / 100))]
     
-    func raise(percentRaise: Double) -> Double {
-        
+    func raise(percentRaise: Double) -> Void {
         switch salary {
         case .PerYear(let amount):
-            return (amount + ((percentRaise/100)+1))
+            self.salary = Salary.PerYear(amount * ((percentRaise/100)+1))
+            //return (amount * ((percentRaise/100)+1))
             
         case .PerHour(let amount):
-            return (calculateIncome(2000.0) + ((percentRaise/100)+1))
+            self.salary = Salary.PerHour(amount * ((percentRaise/100)+1))
         }
         
     }
@@ -230,17 +230,17 @@ class Family {
 
 var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
 var job2 = Job(title: "Electrician", salary: Job.Salary.PerYear(30000.0))
+var job2 = Job(title: "Electrician", salary: Job.Salary.PerHour(10.0))
+
 
 
 var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
 
 
-//print("Income is \(p2.job?.calculateIncome(40.0))")
-//
-//print(p2.job?.raise(10.0))
-//
-//print("Income now is \(p2.job?.calculateIncome(40.0))")
+print("Income is \(p2.job?.calculateIncome(40.0))")
+p2.job?.raise(20)
+print("Income now is \(p2.job?.calculateIncome(40.0))")
 
 
 //var p3 = Person(firstName: "", lastName: "", age: 0, job: nil, spouse: nil)
