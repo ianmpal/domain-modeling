@@ -8,6 +8,24 @@
 
 import Foundation
 
+protocol CustomStringConvertible {
+    var description: String { get }
+}
+
+
+
+var money1 = Money(amount: 4, currency: "USD")
+var money2 = Money(amount: 8, currency: "GBP")
+print(money1.description)
+print(money2.description)
+
+
+
+
+
+/*
+
+
 
 // Begin test code
 
@@ -45,13 +63,13 @@ print("\(p3.toString()) \n")
 
 var raise = 10.0
 var beforeRaise = p2.job?.calculateIncome(1.0)
-print("Income is \(beforeRaise!)")
+print("Income is $\(beforeRaise!)")
 print("Raising income by \(raise)%")
 
 p2.job?.raise(raise)
 var afterRaise = p2.job?.calculateIncome(1.0)
 
-print("Income after 10% raise is \(afterRaise!)")
+print("Income after 10% raise is $\(afterRaise!)")
 
 
 var family: [Person] = [p1, p2]
@@ -68,3 +86,5 @@ print("\n")
 print("Now there are \(fam.members.count) members in the family")
 
 print("\n")
+
+*/

@@ -10,9 +10,16 @@ import Foundation
 
 // Struct Money
 
-struct Money {
+struct Money: CustomStringConvertible {
     var amount: Double
     var currency: String
+    var description: String
+    
+    init (amount: Double, currency: String) {
+        self.amount = amount
+        self.currency = currency
+        self.description = currency + String(amount)
+    }
     
     
     // Convert is generalized so that you can input any value in any currency, and it will return the appropriate
