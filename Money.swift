@@ -10,7 +10,7 @@ import Foundation
 
 // Struct Money
 
-struct Money: CustomStringConvertible {
+struct Money: CustomStringConvertible, Mathematics {
     var amount: Double
     var currency: String
     var description: String

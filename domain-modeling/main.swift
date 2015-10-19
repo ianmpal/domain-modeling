@@ -8,10 +8,34 @@
 
 import Foundation
 
-protocol CustomStringConvertible {
-    var description: String { get }
+
+
+protocol Mathematics {
+    func add(value: Double, curr: String) -> Double
+    func sub(value: Double, curr: String) -> Double
 }
 
+
+//•add four new extension properties, USD, EUR, GBP, YEN
+//
+//•each should return a Money
+//•each should convert the Double into a Money using
+//
+//"self" as the amount
+//
+//– Unit tests!
+
+extension Double {
+    var USD: Money { return Money(amount: self, currency: "USD") }
+    var EUR: Money { return Money(amount: self, currency: "EUR") }
+    var GBP: Money { return Money(amount: self, currency: "GBP") }
+    var CAN: Money { return Money(amount: self, currency: "CAN") }
+}
+
+
+var moneyUSD = 10.USD.add(5.0, curr: "GBP")
+
+print("Hello " + moneyUSD.description)
 
 
 var money1 = Money(amount: 4, currency: "USD")

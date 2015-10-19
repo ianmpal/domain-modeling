@@ -13,7 +13,7 @@ import Foundation
 
 // Class Family
 
-class Family {
+class Family: CustomStringConvertible {
     var members = [Person]()
     var description: String
     

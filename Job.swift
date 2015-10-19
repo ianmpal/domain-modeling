@@ -11,7 +11,7 @@ import Foundation
 
 // Class Job
 
-class Job {
+class Job: CustomStringConvertible {
     var title: String
     var salary: Salary
     var description: String
