@@ -8,14 +8,15 @@
 
 import Foundation
 
-// Struct Money
 
-extension Double {
-    var USD: Money { return Money(amount: self, currency: "USD") }
-    var EUR: Money { return Money(amount: self, currency: "EUR") }
-    var GBP: Money { return Money(amount: self, currency: "GBP") }
-    var CAN: Money { return Money(amount: self, currency: "CAN") }
+// Protocol Mathematics for Add/Sub
+
+protocol Mathematics {
+    func add(value: Double, curr: String) -> Double
+    func sub(value: Double, curr: String) -> Double
 }
+
+// Struct Money
 
 struct Money: CustomStringConvertible, Mathematics {
     var amount: Double

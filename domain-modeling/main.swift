@@ -9,74 +9,74 @@
 import Foundation
 
 
-
-protocol Mathematics {
-    func add(value: Double, curr: String) -> Double
-    func sub(value: Double, curr: String) -> Double
+extension Double {
+    var USD: Money { return Money(amount: self, currency: "USD") }
+    var EUR: Money { return Money(amount: self, currency: "EUR") }
+    var GBP: Money { return Money(amount: self, currency: "GBP") }
+    var CAN: Money { return Money(amount: self, currency: "CAN") }
 }
 
+print("// Begin Domain-Modeling Pt. 2 Tests\n")
 
-//•add four new extension properties, USD, EUR, GBP, YEN
-//
-//•each should return a Money
-//•each should convert the Double into a Money using
-//
-//"self" as the amount
-//
-//– Unit tests!
+print("// Money Test\n")
+var m1 = 10.EUR
+var m2 = 45.GBP
+var m3 = 7.CAN
+var m4 = 3.USD
+print("Test of EUR10.0: " + m1.description)
+print("Test of GBP45.0: " + m2.description)
+print("Test of CAN7.0: " + m3.description)
+print("Test of USD3.0: " + m4.description)
+print("")
+print("Adding GBP10.0 to EUR10.0 = " + String(m1.currency) + String(m1.add(10, curr: "GBP")))
+print("Subtracting CAN0.5 from CAN7.0 = " + String(m3.currency) + String(m3.sub(0.5, curr: "CAN")))
+print("")
 
 
-
-
-var moneyUSD = 10.USD.add(5.0, curr: "GBP")
-
-print("Hello " + moneyUSD.description)
-
-
-var money1 = Money(amount: 4, currency: "USD")
-var money2 = Money(amount: 8, currency: "GBP")
-print(money1.description)
-print(money2.description)
+print("// Job Test\n")
 
 var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
 var job2 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
 var job3 = Job(title: "Musician", salary: Job.Salary.PerYear(60000.0))
 var job4 = Job(title: "Chef", salary: Job.Salary.PerHour(70))
 
-var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
-var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
-var p3 = Person(firstName: "Kelly", lastName: "Smith", age: 22, job: job3, spouse: nil)
-var p4 = Person(firstName: "John", lastName: "Smith", age: 22, job: job4, spouse: p3)
-
-p1.spouse = p2
-p3.spouse = p4
-
-
-
-
 print(job1.description)
 print(job2.description)
 print(job3.description)
 print(job4.description)
+print("")
+
+print("// Person Test\n")
+
+var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
+var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+var p3 = Person(firstName: "Kelly", lastName: "Smith", age: 22, job: job3, spouse: nil)
+var p4 = Person(firstName: "John", lastName: "Smith", age: 22, job: job4, spouse: p3)
+p1.spouse = p2
+p3.spouse = p4
+
+print(p1.description + "\n")
+print(p2.description + "\n")
+print(p3.description + "\n")
+print(p4.description + "\n")
+print("")
+
+print("// Family Test\n")
 
 var family = [p1, p2, p3, p4]
 var fam = Family(members: family)
 
 
-//print(fam.description)
+print(fam.description)
+print("")
+print("")
 
 
+// Domain-Modeling Pt.1
 
+print("// Begin Domain-Modeling Pt. 1 Tests\n")
 
-
-
-
-/*
-
-
-
-// Begin test code
-
+print("// Money Test\n")
 
 var money1 = Money(amount: 4, currency: "USD")
 var money2 = Money(amount: 8, currency: "GBP")
@@ -97,14 +97,16 @@ print("After subtracting 14.2 GBP, our balance is \(sub2) GBP.")
 
 print("\n")
 
-var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
-var job2 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
+print("// Job Test\n")
 
-var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
-var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
-var p3 = Person(firstName: "Baby", lastName: "Smith", age: 0, job: nil, spouse: nil)
 
-print("\n")
+var job5 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
+var job6 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
+
+var p5 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job5, spouse: nil)
+var p6 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job6, spouse: p1)
+var p7 = Person(firstName: "Baby", lastName: "Smith", age: 0, job: nil, spouse: nil)
+
 print("\(p1.toString()) \n")
 print("\(p2.toString()) \n")
 print("\(p3.toString()) \n")
@@ -118,21 +120,17 @@ p2.job?.raise(raise)
 var afterRaise = p2.job?.calculateIncome(1.0)
 
 print("Income after 10% raise is $\(afterRaise!)")
+print("")
 
-
-var family: [Person] = [p1, p2]
-var fam = Family(members: family)
-
-print("\n")
+print("// Family Test\n")
+var family2: [Person] = [p1, p2]
+var fam2 = Family(members: family2)
 
 print(fam.householdIncome())
-
 print("There are \(fam.members.count) members in the family")
-print("The family is having a child\n")
+print("The family is having a child!")
 fam.haveChild()
-print("\n")
 print("Now there are \(fam.members.count) members in the family")
 
 print("\n")
 
-*/

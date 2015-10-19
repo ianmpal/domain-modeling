@@ -15,7 +15,7 @@ class Job: CustomStringConvertible {
     var title: String
     var salary: Salary
     var description: String {
-        return "Job title: \(title)\nSalary: \(salary)"
+        return "Job title: \(title). Salary: \(salary)"
     }
     
     enum Salary {
