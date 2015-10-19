@@ -15,9 +15,13 @@ import Foundation
 
 class Family {
     var members = [Person]()
+    var description: String
     
     init (members: [Person]) {
         self.members = members
+        self.description = "sux betch"
+        print(members[1].age)
+        
     }
     
     func householdIncome() -> String {

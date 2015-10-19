@@ -14,6 +14,7 @@ import Foundation
 class Job {
     var title: String
     var salary: Salary
+    var description: String
     
     enum Salary {
         case PerHour(Double)
@@ -23,6 +24,7 @@ class Job {
     init (title: String, salary: Salary) {
         self.title = title
         self.salary = salary
+        self.description = "Title: \(title). Salary: \(salary)"
     }
     
     

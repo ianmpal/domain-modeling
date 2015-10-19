@@ -16,8 +16,23 @@ protocol CustomStringConvertible {
 
 var money1 = Money(amount: 4, currency: "USD")
 var money2 = Money(amount: 8, currency: "GBP")
-print(money1.description)
-print(money2.description)
+//print(money1.description)
+//print(money2.description)
+
+var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
+var job2 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
+
+var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
+var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+
+//print(p2.description)
+//
+//print(job2.description)
+
+var family = [p1, p2]
+
+print(family.description)
+
 
 
 

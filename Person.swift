@@ -12,8 +12,8 @@ import Foundation
 // Class Person
 
 class Person: CustomStringConvertible {
-    var firstName: String
-    var lastName: String
+    var firstName: String?
+    var lastName: String?
     var age = 0
     var job: Job?
     var spouse: Person?
@@ -28,14 +28,14 @@ class Person: CustomStringConvertible {
             self.job = job
         } else {
             self.job = nil
-            print("Persons under age 16 are not allowed to work.")
+            //print("Persons under age 16 are not allowed to work.")
         }
         
         if age >= 18 {
             self.spouse = spouse
         } else {
             self.spouse = nil
-            print("Persons under age 18 are not allowed to get married.")
+            //print("Persons under age 18 are not allowed to get married.")
         }
         self.description = "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \((job?.title)!) \nSpouse: \(spouse?.firstName)"
 
