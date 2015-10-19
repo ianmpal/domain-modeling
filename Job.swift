@@ -24,7 +24,7 @@ class Job {
     init (title: String, salary: Salary) {
         self.title = title
         self.salary = salary
-        self.description = "Title: \(title). Salary: \(salary)"
+        self.description = "Job title: \(title). Salary: \(salary)"
     }
     
     

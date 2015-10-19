@@ -19,8 +19,18 @@ class Family {
     
     init (members: [Person]) {
         self.members = members
-        self.description = "sux betch"
-        print(members[1].age)
+        self.description = "Family members: "
+        var count = 1
+        if members.count != 0 {
+            for member in members {
+                if count < members.count {
+                    description += member.firstName! + ", "
+                    count++
+                } else {
+                    description += member.firstName!
+                }
+            }
+        }
         
     }
     
