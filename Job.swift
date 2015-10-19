@@ -14,7 +14,9 @@ import Foundation
 class Job: CustomStringConvertible {
     var title: String
     var salary: Salary
-    var description: String
+    var description: String {
+        return "Job title: \(title)\nSalary: \(salary)"
+    }
     
     enum Salary {
         case PerHour(Double)
@@ -24,7 +26,6 @@ class Job: CustomStringConvertible {
     init (title: String, salary: Salary) {
         self.title = title
         self.salary = salary
-        self.description = "Job title: \(title). Salary: \(salary)"
     }
     
     

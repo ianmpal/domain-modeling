@@ -12,12 +12,14 @@ import Foundation
 // Class Person
 
 class Person: CustomStringConvertible {
-    var firstName: String?
-    var lastName: String?
+    var firstName: String
+    var lastName: String
     var age = 0
     var job: Job?
     var spouse: Person?
-    var description: String
+    var description: String {
+        return toString()
+    }
     
     
     init (firstName: String, lastName: String, age: Int, job: Job?, spouse: Person?) {
@@ -37,7 +39,7 @@ class Person: CustomStringConvertible {
             self.spouse = nil
             //print("Persons under age 18 are not allowed to get married.")
         }
-        self.description = "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \((job?.title)!) \nSpouse: \(spouse?.firstName)"
+        //self.description = "Name: \(firstName) \(lastName) \nAge: \(age) \nJob: \((job?.title)!) \nSpouse: \(spouse?.firstName)"
 
     }
     

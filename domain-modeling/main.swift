@@ -25,12 +25,7 @@ protocol Mathematics {
 //
 //– Unit tests!
 
-extension Double {
-    var USD: Money { return Money(amount: self, currency: "USD") }
-    var EUR: Money { return Money(amount: self, currency: "EUR") }
-    var GBP: Money { return Money(amount: self, currency: "GBP") }
-    var CAN: Money { return Money(amount: self, currency: "CAN") }
-}
+
 
 
 var moneyUSD = 10.USD.add(5.0, curr: "GBP")
@@ -45,24 +40,31 @@ print(money2.description)
 
 var job1 = Job(title: "Electrician", salary: Job.Salary.PerYear(20000.0))
 var job2 = Job(title: "Designer", salary: Job.Salary.PerHour(10))
+var job3 = Job(title: "Musician", salary: Job.Salary.PerYear(60000.0))
+var job4 = Job(title: "Chef", salary: Job.Salary.PerHour(70))
 
 var p1 = Person(firstName: "Joe", lastName: "Smith", age: 22, job: job1, spouse: nil)
 var p2 = Person(firstName: "Jenny", lastName: "Prathers", age: 22, job: job2, spouse: p1)
+var p3 = Person(firstName: "Kelly", lastName: "Smith", age: 22, job: job3, spouse: nil)
+var p4 = Person(firstName: "John", lastName: "Smith", age: 22, job: job4, spouse: p3)
 
-var p3 = Person(firstName: "John", lastName: "Smith", age: 22, job: job1, spouse: nil)
+p1.spouse = p2
+p3.spouse = p4
 
-var p4 = Person(firstName: "Kelly", lastName: "Smith", age: 22, job: job1, spouse: nil)
 
 
-print(p2.description)
 
+print(job1.description)
 print(job2.description)
+print(job3.description)
+print(job4.description)
 
 var family = [p1, p2, p3, p4]
 var fam = Family(members: family)
 
 
-print(fam.description)
+//print(fam.description)
+
 
 
 

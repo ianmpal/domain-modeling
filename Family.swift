@@ -15,23 +15,13 @@ import Foundation
 
 class Family: CustomStringConvertible {
     var members = [Person]()
-    var description: String
+    var description: String {
+        return members.description
+    }
+    
     
     init (members: [Person]) {
         self.members = members
-        self.description = "Family members: "
-        var count = 1
-        if members.count != 0 {
-            for member in members {
-                if count < members.count {
-                    description += member.firstName! + ", "
-                    count++
-                } else {
-                    description += member.firstName!
-                }
-            }
-        }
-        
     }
     
     func householdIncome() -> String {

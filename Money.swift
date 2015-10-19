@@ -10,15 +10,23 @@ import Foundation
 
 // Struct Money
 
+extension Double {
+    var USD: Money { return Money(amount: self, currency: "USD") }
+    var EUR: Money { return Money(amount: self, currency: "EUR") }
+    var GBP: Money { return Money(amount: self, currency: "GBP") }
+    var CAN: Money { return Money(amount: self, currency: "CAN") }
+}
+
 struct Money: CustomStringConvertible, Mathematics {
     var amount: Double
     var currency: String
-    var description: String
+    var description: String {
+        return currency + String(amount)
+    }
     
     init (amount: Double, currency: String) {
         self.amount = amount
         self.currency = currency
-        self.description = currency + String(amount)
     }
     
     
